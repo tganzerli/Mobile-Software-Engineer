@@ -4,7 +4,9 @@ import 'package:dio/dio.dart';
 import 'core.dart';
 import 'services/client/dio/dio_impl.dart';
 
+export 'contracts/contracts.dart';
 export 'controllers/controllers.dart';
+export 'enums/enums.dart';
 export 'errors/errors.dart';
 export 'services/services.dart';
 export 'types/types.dart';
