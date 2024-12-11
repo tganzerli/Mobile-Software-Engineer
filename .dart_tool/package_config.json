@@ -81,9 +81,9 @@
     },
     {
       "name": "flutter_lints",
-      "rootUri": "file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/flutter_lints-4.0.0",
+      "rootUri": "file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.5"
     },
     {
       "name": "flutter_test",
@@ -117,9 +117,9 @@
     },
     {
       "name": "lints",
-      "rootUri": "file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/lints-4.0.0",
+      "rootUri": "file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/lints-5.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.1"
+      "languageVersion": "3.5"
     },
     {
       "name": "matcher",
@@ -136,6 +136,12 @@
     {
       "name": "meta",
       "rootUri": "file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/meta-1.15.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "mocktail",
+      "rootUri": "file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/mocktail-1.0.4",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -230,7 +236,7 @@
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2024-12-10T15:03:21.520412Z",
+  "generated": "2024-12-11T12:34:10.887368Z",
   "generator": "pub",
   "generatorVersion": "3.5.4",
   "flutterRoot": "file:///Users/thiagoganzerli/fvm/versions/stable",

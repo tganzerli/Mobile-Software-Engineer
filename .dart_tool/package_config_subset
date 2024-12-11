@@ -47,9 +47,9 @@ fixnum
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/fixnum-1.1.1/
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/fixnum-1.1.1/lib/
 flutter_lints
-3.1
-file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/flutter_lints-4.0.0/
-file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/flutter_lints-4.0.0/lib/
+3.5
+file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/
+file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/flutter_lints-5.0.0/lib/
 http_parser
 2.12
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/http_parser-4.0.2/
@@ -67,9 +67,9 @@ leak_tracker_testing
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/leak_tracker_testing-3.0.1/lib/
 lints
-3.1
-file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/lints-4.0.0/
-file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/lints-4.0.0/lib/
+3.5
+file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/lints-5.0.0/
+file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/lints-5.0.0/lib/
 matcher
 3.0
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/matcher-0.12.16+1/
@@ -82,6 +82,10 @@ meta
 2.12
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/meta-1.15.0/
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/meta-1.15.0/lib/
+mocktail
+2.12
+file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/mocktail-1.0.4/
+file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/mocktail-1.0.4/lib/
 path
 3.0
 file:///Users/thiagoganzerli/.pub-cache/hosted/pub.dev/path-1.9.0/
