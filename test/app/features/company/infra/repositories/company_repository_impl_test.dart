@@ -23,7 +23,7 @@ void main() {
   });
 
   group('[CompanyRepository] getCompanies function: ', () {
-    test('Get ompanies successfully from API', () async {
+    test('Get Companies successfully from API', () async {
       when(() => companyDatasource.getCompanies()).thenAnswer(
         (_) async => RestClientResponse(
           request: RestClientRequest(

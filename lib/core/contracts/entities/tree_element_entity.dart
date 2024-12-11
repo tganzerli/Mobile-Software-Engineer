@@ -12,7 +12,7 @@ class TreeElementEntity extends Entity {
   final SensorType? sensorType;
   final ComponentsStatus? componentsStatus;
   final String? gatewayId;
-  final List<TreeElementEntity> children;
+  List<TreeElementEntity> children;
 
   TreeElementEntity({
     required super.id,
@@ -25,8 +25,6 @@ class TreeElementEntity extends Entity {
     this.gatewayId,
     this.children = const [],
   });
-
-  void addChildren(TreeElementEntity element) => children.add(element);
 
   @override
   Either<ValidationException, Entity> validate() {
