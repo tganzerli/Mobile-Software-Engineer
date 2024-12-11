@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-/// A class that defines spacing constants for the Syntra app.
-class SyntraSpacing extends ThemeExtension<SyntraSpacing> {
+/// A class that defines spacing constants for the Ui app.
+class UiSpacing extends ThemeExtension<UiSpacing> {
   final double mobileWidth;
   final double figmaWidth;
 
@@ -50,10 +50,10 @@ class SyntraSpacing extends ThemeExtension<SyntraSpacing> {
   /// Size Value: `16`
   late double marginApp;
 
-  /// Constructor for the [SyntraSpacing] class.
+  /// Constructor for the [UiSpacing] class.
   ///
   /// Initializes the spacing values based on the provided [mobileWidth] and [figmaWidth].
-  SyntraSpacing(
+  UiSpacing(
     this.mobileWidth,
     this.figmaWidth, {
     double spacingXXS = 4,
@@ -77,9 +77,9 @@ class SyntraSpacing extends ThemeExtension<SyntraSpacing> {
         spacingXXXL = (spacingXXXL / figmaWidth) * mobileWidth,
         marginApp = (marginApp / figmaWidth) * mobileWidth;
 
-  /// Retrieves the [SyntraSpacing] instance from the [BuildContext].
-  static SyntraSpacing of(BuildContext context) {
-    return Theme.of(context).extension<SyntraSpacing>()!;
+  /// Retrieves the [UiSpacing] instance from the [BuildContext].
+  static UiSpacing of(BuildContext context) {
+    return Theme.of(context).extension<UiSpacing>()!;
   }
 
   double size(double pxSize) {
@@ -87,7 +87,7 @@ class SyntraSpacing extends ThemeExtension<SyntraSpacing> {
   }
 
   @override
-  SyntraSpacing copyWith({
+  UiSpacing copyWith({
     double? figmaWidth,
     double? spacingXXS,
     double? spacingXS,
@@ -99,7 +99,7 @@ class SyntraSpacing extends ThemeExtension<SyntraSpacing> {
     double? spacingXXXL,
     double? marginApp,
   }) {
-    return SyntraSpacing(
+    return UiSpacing(
       mobileWidth,
       figmaWidth ?? this.figmaWidth,
       spacingXXS: spacingXXS ?? this.spacingXXS,
@@ -115,13 +115,13 @@ class SyntraSpacing extends ThemeExtension<SyntraSpacing> {
   }
 
   @override
-  ThemeExtension<SyntraSpacing> lerp(
-      covariant ThemeExtension<SyntraSpacing>? other, double t) {
-    if (other is! SyntraSpacing) {
+  ThemeExtension<UiSpacing> lerp(
+      covariant ThemeExtension<UiSpacing>? other, double t) {
+    if (other is! UiSpacing) {
       return this;
     }
 
-    return SyntraSpacing(
+    return UiSpacing(
       mobileWidth,
       figmaWidth,
     );

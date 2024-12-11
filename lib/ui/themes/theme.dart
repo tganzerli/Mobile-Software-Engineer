@@ -12,7 +12,7 @@ const double figmaWidth = 430;
 
 ThemeData lightTheme(BuildContext context) {
   var width = MediaQuery.of(context).size.width;
-  final font = SyntraFontSize(width);
+  final font = UiFontSize(width);
   return ThemeData(
     inputDecorationTheme: const InputDecorationTheme(
         filled: true,
@@ -125,7 +125,7 @@ ThemeData lightTheme(BuildContext context) {
     ),
     extensions: [
       const UiColors(),
-      SyntraSpacing(width, figmaWidth),
+      UiSpacing(width, figmaWidth),
     ],
   );
 }

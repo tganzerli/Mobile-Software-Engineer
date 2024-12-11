@@ -2,22 +2,22 @@ import 'package:flutter/material.dart';
 
 import 'images_constant.dart';
 
-class SyntraImages extends StatelessWidget {
+class UiImages extends StatelessWidget {
   final String asset;
   final double? height;
   final double? width;
 
-  const SyntraImages.asset({
+  const UiImages.asset({
     super.key,
     this.height,
     this.width,
   }) : asset = ImagesConstant.asset;
-  const SyntraImages.component({
+  const UiImages.component({
     super.key,
     this.height,
     this.width,
   }) : asset = ImagesConstant.component;
-  const SyntraImages.location({
+  const UiImages.location({
     super.key,
     this.height,
     this.width,

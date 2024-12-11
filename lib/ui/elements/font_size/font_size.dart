@@ -1,7 +1,7 @@
-class SyntraFontSize {
+class UiFontSize {
   final double mobileWidth;
 
-  SyntraFontSize(this.mobileWidth);
+  UiFontSize(this.mobileWidth);
 
   double size(double size) {
     switch (size) {

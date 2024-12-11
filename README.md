@@ -235,13 +235,13 @@ class DefaultException extends BaseException {
 ```
 
 ### State Pattern
-The Pattern used in this project is structured with native tools of the framework. Which, through an abstract class called `BaseViewModels`, which was designed to manage and notify state changes using the `ValueNotifier` class. This class can use builder like [ValueListenableBuilder], [ListenableBuilder] or [AnimatedBuilder].
+The Pattern used in this project is structured with native tools of the framework. Which, through an abstract class called `ViewModel`, which was designed to manage and notify state changes using the `ValueNotifier` class. This class can use builder like [ValueListenableBuilder], [ListenableBuilder] or [AnimatedBuilder].
 
 **How to use?**  
-An extended `BaseViewModels` class controls a single page. Additionally, you can also create specific state classes for it.
+An extended `ViewModel` class controls a single page. Additionally, you can also create specific state classes for it.
 
 ```dart
-class HomeViewModels extends BaseViewModels<BaseState> {
+class HomeViewModels extends ViewModel<ViewState> {
   HomeViewModels() : super(HomeInitial());
   }
 ```
@@ -255,7 +255,7 @@ In the controlling class body, events are inserted through functions of the `Fut
 e.g:
 
 ```dart
-class HomeViewModels extends BaseViewModels<BaseState> {
+class HomeViewModels extends ViewModel<ViewState> {
   HomeViewModels() : super(HomeInitial());
 
   Future<void> initEvent() async {
