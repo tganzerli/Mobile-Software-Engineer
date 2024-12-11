@@ -1,4 +1,4 @@
-import 'package:core_module/core_module.dart';
+import 'package:mobile_software_engineer/core/core.dart';
 import 'package:dio/dio.dart';
 
 class DioAdapter {
