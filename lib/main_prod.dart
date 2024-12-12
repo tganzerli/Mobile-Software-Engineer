@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:mobile_software_engineer/app/app_widget_prod.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     systemNavigationBarColor: Colors.transparent,

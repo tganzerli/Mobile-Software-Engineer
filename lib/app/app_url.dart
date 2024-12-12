@@ -1,5 +1,5 @@
 class Api {
-  static String base = String.fromEnvironment('BASE_URL');
+  static String base = const String.fromEnvironment('BASE_URL');
   static CompaniesApi companies = CompaniesApi();
 }
 

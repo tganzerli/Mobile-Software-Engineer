@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_software_engineer/core/core.dart';
+import 'package:mobile_software_engineer/injector.dart';
 
 import '../ui/ui.dart';
 
@@ -16,7 +18,11 @@ class StartConfig extends StatefulWidget {
 }
 
 class _StartConfigState extends State<StartConfig> {
-  Future<void> addInterceptors() async {}
+  final client = injector.get<RestClient>();
+
+  Future<void> addInterceptors() async {
+    client.addInterceptors(LogsInterceptor());
+  }
 
   @override
   void initState() {

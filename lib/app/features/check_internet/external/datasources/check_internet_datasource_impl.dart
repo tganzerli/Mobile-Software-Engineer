@@ -13,8 +13,9 @@ class CheckInternetDataSourceImpl extends CheckInternetDataSource {
   @override
   Future<RestClientResponse> checkInternet() async {
     try {
+      final String path = const String.fromEnvironment('CHECK_INTERNET_URL');
       final baseResponse = await client.request(RestClientRequest(
-        path: String.fromEnvironment('CHECK_INTERNET_URL'),
+        path: path,
         method: RestMethod.get,
         receiveTimeout: const Duration(seconds: 1),
       ));

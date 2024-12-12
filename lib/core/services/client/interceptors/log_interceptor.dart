@@ -10,8 +10,6 @@ class LogsInterceptor implements ClientInterceptor {
     StackTrace? stackTrace = error.stackTracing;
     String path = error.response?.request.path ?? '';
     String url = error.response?.request.baseUrl ?? '';
-    //TODO: verificar tipagem do error.error, ele não é do tipo Exception
-    // Exception exception = error.error;
     dynamic data = error.data;
     int? statusCode = error.statusCode;
 
