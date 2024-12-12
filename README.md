@@ -124,7 +124,7 @@ The design system has an exclusive folder, which contains all graphic components
 
 - All colors can be accessed using the code:
 ```dart
-final colors = SinaxysColors.of(context);
+final colors = UiColors.of(context);
 ```
 
 - Text styles can be accessed through:
