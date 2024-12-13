@@ -16,6 +16,18 @@ class UiIcons extends StatelessWidget {
     this.height,
     this.width,
   }) : asset = IconsConstant.bolt;
+  const UiIcons.boltOut({
+    super.key,
+    this.color = UiColorsConstant.white50,
+    this.height,
+    this.width,
+  }) : asset = IconsConstant.boltOut;
+  const UiIcons.critical({
+    super.key,
+    this.color = UiColorsConstant.white50,
+    this.height,
+    this.width,
+  }) : asset = IconsConstant.critical;
   const UiIcons.vector({
     super.key,
     this.color = UiColorsConstant.white50,
