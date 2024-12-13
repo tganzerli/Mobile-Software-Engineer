@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../ui/ui.dart';
 import 'start_config_prod.dart';
+import 'view/menu/menu_page.dart';
 import 'view/splash/splash_page.dart';
 
 class AppWidget extends StatelessWidget {
@@ -15,6 +16,7 @@ class AppWidget extends StatelessWidget {
       theme: lightTheme(context),
       routes: {
         '/': (context) => const SplashPage(),
+        '/menu': (context) => const MenuPage(),
       },
     );
   }

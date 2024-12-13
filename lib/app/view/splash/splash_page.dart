@@ -25,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
       );
     }
     if (state is SplashSuccess) {
-      // Go to Menu
+      Navigator.popAndPushNamed(context, '/menu');
     }
   }
 
