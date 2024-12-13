@@ -30,6 +30,9 @@ class ButtonUiComp extends StatelessWidget {
   /// The padding of the button. If null, it will default to a standard size.
   final EdgeInsetsGeometry? padding;
 
+  /// Space between icon and label. If null, it will default to a standard size.
+  final double? iconSpacing;
+
   /// The type of the button which defines its style.
   /// If null, it defaults to [ButtonType.primary].
   final ButtonType? buttonType;
@@ -47,6 +50,7 @@ class ButtonUiComp extends StatelessWidget {
     this.width,
     this.height,
     this.padding,
+    this.iconSpacing,
     super.key,
   });
 
@@ -94,14 +98,18 @@ class ButtonUiComp extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             prefixIcon ?? const SizedBox(),
-            SizedBox(width: prefixIcon == null ? 0 : spacing.spacingMD),
+            SizedBox(
+                width:
+                    prefixIcon == null ? 0 : iconSpacing ?? spacing.spacingMD),
             Text(
               label,
               style: textTheme.titleMedium!.copyWith(
                 color: textColor,
               ),
             ),
-            SizedBox(width: prefixIcon == null ? 0 : spacing.spacingMD),
+            SizedBox(
+                width:
+                    prefixIcon == null ? 0 : iconSpacing ?? spacing.spacingMD),
             suffixIcon ?? const SizedBox()
           ],
         ),

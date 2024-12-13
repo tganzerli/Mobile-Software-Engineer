@@ -1,12 +1,14 @@
 part of 'button.dart';
 
 enum ButtonType {
-  primary();
+  primary(),
+  light();
 
   Color getBackgroundColor(BuildContext context) {
     final colors = UiColors.of(context);
     return switch (this) {
       ButtonType.primary => colors.primary,
+      ButtonType.light => Colors.transparent,
     };
   }
 
@@ -14,6 +16,7 @@ enum ButtonType {
     final colors = UiColors.of(context);
     return switch (this) {
       ButtonType.primary => colors.primary,
+      ButtonType.light => colors.gray400,
     };
   }
 
@@ -21,6 +24,7 @@ enum ButtonType {
     final colors = UiColors.of(context);
     return switch (this) {
       ButtonType.primary => colors.gray400,
+      ButtonType.light => Colors.transparent,
     };
   }
 
@@ -28,6 +32,7 @@ enum ButtonType {
     final colors = UiColors.of(context);
     return switch (this) {
       ButtonType.primary => colors.gray400,
+      ButtonType.light => colors.gray400,
     };
   }
 
@@ -35,6 +40,7 @@ enum ButtonType {
     final colors = UiColors.of(context);
     return switch (this) {
       ButtonType.primary => colors.white50,
+      ButtonType.light => colors.gray700,
     };
   }
 
@@ -42,6 +48,7 @@ enum ButtonType {
     final colors = UiColors.of(context);
     return switch (this) {
       ButtonType.primary => colors.white50,
+      ButtonType.light => colors.gray400,
     };
   }
 }
