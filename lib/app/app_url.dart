@@ -6,5 +6,5 @@ class Api {
 class CompaniesApi {
   String base = '/companies';
   String locations(String companyId) => '/companies/$companyId/locations';
-  String assets(String companyId) => '/companies?$companyId/assets';
+  String assets(String companyId) => '/companies/$companyId/assets';
 }
