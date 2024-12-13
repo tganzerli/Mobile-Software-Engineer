@@ -46,7 +46,9 @@ class _AssetsPageState extends State<AssetsPage> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     company = (ModalRoute.of(context)?.settings.arguments) as CompaniesEntity;
-    controller.initEvent(company: company);
+    if (controller.state.elementsRoots.isEmpty) {
+      controller.initEvent(company: company);
+    }
   }
 
   @override
@@ -70,10 +72,10 @@ class _AssetsPageState extends State<AssetsPage> {
           style: text.titleLarge!.copyWith(color: colors.white50),
         ),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(spacing.size(104)),
+          preferredSize: Size.fromHeight(spacing.size(124)),
           child: Container(
             width: double.maxFinite,
-            height: spacing.size(104),
+            height: spacing.size(124),
             decoration: BoxDecoration(
               color: colors.white50,
               border: Border(bottom: BorderSide(color: colors.gray300)),
@@ -85,6 +87,25 @@ class _AssetsPageState extends State<AssetsPage> {
                     builder: (context, state, __) {
                       return Column(
                         children: [
+                          LineTextFieldComp(
+                            isEnabled: true,
+                            controller: controller.textController,
+                            focusNode: controller.focusNode,
+                            label: AssetsTextConstants.textFieldLable,
+                            prefixIcon: Icon(Icons.search),
+                            onChanged: (p0) => controller.filterEvent(),
+                            onTapOutside: (p0) {
+                              controller.focusNode.unfocus();
+                              controller.filterEvent();
+                            },
+                            onSubmitted: (p0) {
+                              controller.focusNode.unfocus();
+                              controller.filterEvent();
+                            },
+                          ),
+                          SizedBox(
+                            height: spacing.spacingXS,
+                          ),
                           Row(
                             children: [
                               ButtonUiComp(
@@ -105,10 +126,11 @@ class _AssetsPageState extends State<AssetsPage> {
                                     ? ButtonType.primary
                                     : ButtonType.light,
                                 onPressed: () => controller.filterEvent(
-                                  componentsStatus: state.componentsStatus !=
-                                          ComponentsStatus.operating
-                                      ? ComponentsStatus.operating
-                                      : null,
+                                  componentsStatus: () =>
+                                      state.componentsStatus !=
+                                              ComponentsStatus.operating
+                                          ? ComponentsStatus.operating
+                                          : null,
                                 ),
                               ),
                               SizedBox(
@@ -132,10 +154,11 @@ class _AssetsPageState extends State<AssetsPage> {
                                     ? ButtonType.primary
                                     : ButtonType.light,
                                 onPressed: () => controller.filterEvent(
-                                  componentsStatus: state.componentsStatus !=
-                                          ComponentsStatus.alert
-                                      ? ComponentsStatus.alert
-                                      : null,
+                                  componentsStatus: () =>
+                                      state.componentsStatus !=
+                                              ComponentsStatus.alert
+                                          ? ComponentsStatus.alert
+                                          : null,
                                 ),
                               )
                             ],
@@ -194,7 +217,8 @@ class _AssetsPageState extends State<AssetsPage> {
                         List.generate(state.elementsFiltered.length, (index) {
                       return TreeElementWidget(
                         element: state.elementsFiltered[index],
-                        startExpeand: state.componentsStatus != null,
+                        startExpeand: state.componentsStatus != null ||
+                            controller.textController.text.isNotEmpty,
                       );
                     }),
                   ),

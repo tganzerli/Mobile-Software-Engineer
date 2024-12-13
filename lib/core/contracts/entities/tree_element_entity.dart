@@ -66,6 +66,23 @@ class TreeElementEntity extends Entity {
     return null;
   }
 
+  TreeElementEntity? filterName(String name) {
+    if (this.name.toLowerCase().contains(name.toLowerCase())) {
+      return this;
+    }
+
+    final filteredChildren = children
+        .map((element) => element.filterName(name))
+        .whereType<TreeElementEntity>()
+        .toList();
+
+    if (filteredChildren.isNotEmpty) {
+      return copyWith(children: filteredChildren);
+    }
+
+    return null;
+  }
+
   TreeElementEntity copyWith({
     Type? type,
     String? name,
