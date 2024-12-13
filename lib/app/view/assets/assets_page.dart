@@ -69,10 +69,122 @@ class _AssetsPageState extends State<AssetsPage> {
           AssetsTextConstants.title,
           style: text.titleLarge!.copyWith(color: colors.white50),
         ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(spacing.size(104)),
+          child: Container(
+            width: double.maxFinite,
+            height: spacing.size(104),
+            decoration: BoxDecoration(
+              color: colors.white50,
+              border: Border(bottom: BorderSide(color: colors.gray300)),
+            ),
+            child: Padding(
+                padding: EdgeInsets.all(spacing.marginApp),
+                child: ValueListenableBuilder(
+                    valueListenable: controller,
+                    builder: (context, state, __) {
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              ButtonUiComp(
+                                label: AssetsTextConstants.button1,
+                                width: spacing.size(200),
+                                height: spacing.size(40),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: spacing.spacingXS),
+                                iconSpacing: spacing.spacingXXS,
+                                prefixIcon: UiIcons.boltOut(
+                                  color: state.componentsStatus ==
+                                          ComponentsStatus.operating
+                                      ? colors.white50
+                                      : colors.gray700,
+                                ),
+                                buttonType: state.componentsStatus ==
+                                        ComponentsStatus.operating
+                                    ? ButtonType.primary
+                                    : ButtonType.light,
+                                onPressed: () => controller.filterEvent(
+                                  componentsStatus: state.componentsStatus !=
+                                          ComponentsStatus.operating
+                                      ? ComponentsStatus.operating
+                                      : null,
+                                ),
+                              ),
+                              SizedBox(
+                                width: spacing.spacingXS,
+                              ),
+                              ButtonUiComp(
+                                label: AssetsTextConstants.button2,
+                                width: spacing.size(100),
+                                height: spacing.size(40),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: spacing.spacingXS),
+                                iconSpacing: spacing.spacingXXS,
+                                prefixIcon: UiIcons.critical(
+                                  color: state.componentsStatus ==
+                                          ComponentsStatus.alert
+                                      ? colors.white50
+                                      : colors.gray700,
+                                ),
+                                buttonType: state.componentsStatus ==
+                                        ComponentsStatus.alert
+                                    ? ButtonType.primary
+                                    : ButtonType.light,
+                                onPressed: () => controller.filterEvent(
+                                  componentsStatus: state.componentsStatus !=
+                                          ComponentsStatus.alert
+                                      ? ComponentsStatus.alert
+                                      : null,
+                                ),
+                              )
+                            ],
+                          )
+                        ],
+                      );
+                    })),
+          ),
+        ),
       ),
       body: ValueListenableBuilder(
           valueListenable: controller,
           builder: (context, state, __) {
+            if (state is AssetsLoading) {
+              return SafeArea(
+                  child: Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(
+                  color: colors.secondary,
+                ),
+              ));
+            }
+            if (state is AssetsError) {
+              return SafeArea(
+                  child: Container(
+                      width: double.maxFinite,
+                      height: double.maxFinite,
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.warning_amber_rounded,
+                            color: colors.secondary,
+                            size: spacing.spacingXXXL,
+                          ),
+                          SizedBox(
+                            height: spacing.spacingMD,
+                          ),
+                          Text(AssetsTextConstants.errorMessage,
+                              style: text.titleMedium,
+                              textAlign: TextAlign.center)
+                        ],
+                      )));
+            }
+
             return SingleChildScrollView(
               child: SafeArea(
                 child: Padding(
@@ -82,6 +194,7 @@ class _AssetsPageState extends State<AssetsPage> {
                         List.generate(state.elementsFiltered.length, (index) {
                       return TreeElementWidget(
                         element: state.elementsFiltered[index],
+                        startExpeand: state.componentsStatus != null,
                       );
                     }),
                   ),

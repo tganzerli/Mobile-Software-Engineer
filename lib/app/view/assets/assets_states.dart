@@ -1,11 +1,14 @@
+import 'package:flutter/widgets.dart';
 import 'package:mobile_software_engineer/core/core.dart';
 
 abstract class AssetsState implements ViewState {
   final List<TreeElementEntity> elementsRoots;
   final List<TreeElementEntity> elementsFiltered;
+  final ComponentsStatus? componentsStatus;
   AssetsState({
     required this.elementsRoots,
     required this.elementsFiltered,
+    this.componentsStatus,
   });
 
   AssetsLoading loading() {
@@ -18,10 +21,13 @@ abstract class AssetsState implements ViewState {
   AssetsSuccess success({
     List<TreeElementEntity>? elementsRoots,
     List<TreeElementEntity>? elementsFiltered,
+    ValueGetter<ComponentsStatus?>? componentsStatus,
   }) {
     return AssetsSuccess(
       elementsRoots: elementsRoots ?? this.elementsRoots,
       elementsFiltered: elementsFiltered ?? this.elementsFiltered,
+      componentsStatus:
+          componentsStatus != null ? componentsStatus() : this.componentsStatus,
     );
   }
 
@@ -44,8 +50,11 @@ final class AssetsLoading extends AssetsState {
 }
 
 final class AssetsSuccess extends AssetsState {
-  AssetsSuccess(
-      {required super.elementsRoots, required super.elementsFiltered});
+  AssetsSuccess({
+    required super.elementsRoots,
+    required super.elementsFiltered,
+    required super.componentsStatus,
+  });
 }
 
 final class AssetsError extends AssetsState {

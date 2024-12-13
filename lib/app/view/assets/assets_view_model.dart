@@ -23,4 +23,22 @@ class AssetsViewModels extends ViewModel<AssetsState> {
       },
     );
   }
+
+  Future<void> filterEvent(
+      {required ComponentsStatus? componentsStatus}) async {
+    if (componentsStatus == null) {
+      emit(state.success(
+          elementsFiltered: state.elementsRoots,
+          componentsStatus: () => componentsStatus));
+    } else {
+      final filtered = state.elementsRoots
+          .map((element) => element.filterStatus(componentsStatus))
+          .whereType<TreeElementEntity>()
+          .toList();
+
+      emit(state.success(
+          elementsFiltered: filtered,
+          componentsStatus: () => componentsStatus));
+    }
+  }
 }
