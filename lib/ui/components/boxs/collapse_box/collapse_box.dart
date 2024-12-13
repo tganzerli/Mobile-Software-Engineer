@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_software_engineer/ui/ui.dart';
 
 class CollapseBox extends StatefulWidget {
-  final Widget title;
+  final Widget Function(double width) title;
   final Widget? body;
   final bool startExpeand;
   final void Function(bool expeand)? expeandCalback;
@@ -97,15 +97,25 @@ class _CollapseBoxState extends State<CollapseBox>
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 widget.body == null
-                    ? const SizedBox()
+                    ? SizedBox(
+                        width: spacing.spacingLG,
+                      )
                     : SizedBox(
                         width: spacing.spacingXL,
                         child: Transform.rotate(
                             angle: _iconRotate.value * math.pi,
                             child: Icon(Icons.keyboard_arrow_down_outlined)),
                       ),
-                SizedBox(
-                  child: widget.title,
+                Flexible(
+                  fit: FlexFit.loose,
+                  child: LayoutBuilder(
+                    builder: (context, constraints) {
+                      return SizedBox(
+                        width: constraints.maxWidth,
+                        child: widget.title(constraints.maxWidth),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
@@ -124,7 +134,7 @@ class _CollapseBoxState extends State<CollapseBox>
       children: [
         _title(context),
         Padding(
-          padding: EdgeInsets.only(left: spacing.spacingXL),
+          padding: EdgeInsets.only(left: spacing.spacingLG),
           child: widget.body!,
         ),
       ],

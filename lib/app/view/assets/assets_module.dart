@@ -7,6 +7,6 @@ final assetsModule = AutoInjector(
   tag: 'assetsModule',
   on: (i) {
     i.addInjector(treeElementFeature);
-    i.addSingleton<AssetsViewModels>(AssetsViewModels.new);
+    i.add<AssetsViewModels>(AssetsViewModels.new);
   },
 );

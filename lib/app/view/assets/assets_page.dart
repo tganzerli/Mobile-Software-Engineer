@@ -7,6 +7,7 @@ import 'package:mobile_software_engineer/ui/ui.dart';
 import 'assets_constants.dart';
 import 'assets_states.dart';
 import 'assets_view_model.dart';
+import 'widget/tree_element_widget.dart';
 
 class AssetsPage extends StatefulWidget {
   const AssetsPage({super.key});
@@ -72,9 +73,19 @@ class _AssetsPageState extends State<AssetsPage> {
       body: ValueListenableBuilder(
           valueListenable: controller,
           builder: (context, state, __) {
-            return SafeArea(
-              child: Container(
-                padding: EdgeInsets.all(spacing.marginApp),
+            return SingleChildScrollView(
+              child: SafeArea(
+                child: Padding(
+                  padding: EdgeInsets.all(spacing.marginApp),
+                  child: Column(
+                    children:
+                        List.generate(state.elementsFiltered.length, (index) {
+                      return TreeElementWidget(
+                        element: state.elementsFiltered[index],
+                      );
+                    }),
+                  ),
+                ),
               ),
             );
           }),
