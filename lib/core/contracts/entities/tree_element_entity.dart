@@ -49,6 +49,23 @@ class TreeElementEntity extends Entity {
     return right(this);
   }
 
+  TreeElementEntity? filterStatus(ComponentsStatus status) {
+    if (componentsStatus != null && componentsStatus == status) {
+      return this;
+    }
+
+    final filteredChildren = children
+        .map((element) => element.filterStatus(status))
+        .whereType<TreeElementEntity>()
+        .toList();
+
+    if (filteredChildren.isNotEmpty) {
+      return copyWith(children: filteredChildren);
+    }
+
+    return null;
+  }
+
   TreeElementEntity copyWith({
     Type? type,
     String? name,
