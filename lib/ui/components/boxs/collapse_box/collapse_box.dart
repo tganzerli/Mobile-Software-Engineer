@@ -56,6 +56,14 @@ class _CollapseBoxState extends State<CollapseBox>
   }
 
   @override
+  void didUpdateWidget(covariant CollapseBox oldWidget) {
+    setState(() {
+      expeand = widget.startExpeand;
+    });
+    super.didUpdateWidget(oldWidget);
+  }
+
+  @override
   void dispose() {
     _controllerAnim.dispose();
     super.dispose();
@@ -98,7 +106,7 @@ class _CollapseBoxState extends State<CollapseBox>
               children: [
                 widget.body == null
                     ? SizedBox(
-                        width: spacing.spacingLG,
+                        width: spacing.spacingXL,
                       )
                     : SizedBox(
                         width: spacing.spacingXL,
@@ -134,7 +142,7 @@ class _CollapseBoxState extends State<CollapseBox>
       children: [
         _title(context),
         Padding(
-          padding: EdgeInsets.only(left: spacing.spacingLG),
+          padding: EdgeInsets.only(left: spacing.spacingMD),
           child: widget.body!,
         ),
       ],
