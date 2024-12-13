@@ -108,7 +108,8 @@ class _MenuPageState extends State<MenuPage> {
                         label: state.companies[index].name,
                         height: spacing.size(76),
                         prefixIcon: UiIcons.vector(),
-                        onPressed: () {},
+                        onPressed: () => Navigator.pushNamed(context, '/assent',
+                            arguments: state.companies[index]),
                       );
                     }),
               ),
