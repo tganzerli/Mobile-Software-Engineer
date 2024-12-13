@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_software_engineer/injector.dart';
 import 'package:mobile_software_engineer/ui/ui.dart';
 
+import 'menu_constants.dart';
 import 'menu_view_model.dart';
 import 'menu_states.dart';
 
@@ -18,8 +19,8 @@ class _MenuPageState extends State<MenuPage> {
   void listener() {
     MenuState state = controller.state;
     if (state is MenuError) {
-      Future.delayed(const Duration(seconds: 3), () {
-        controller.initEvent();
+      Future.delayed(const Duration(seconds: 5), () {
+        // controller.initEvent();
       });
     }
   }
@@ -46,6 +47,7 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     final colors = UiColors.of(context);
     final spacing = UiSpacing.of(context);
+    final text = Theme.of(context).textTheme;
 
     return Scaffold(
       backgroundColor: colors.white50,
@@ -56,6 +58,42 @@ class _MenuPageState extends State<MenuPage> {
       body: ValueListenableBuilder(
           valueListenable: controller,
           builder: (context, state, __) {
+            if (state is MenuLoading) {
+              return SafeArea(
+                  child: Container(
+                width: double.maxFinite,
+                height: double.maxFinite,
+                alignment: Alignment.center,
+                child: CircularProgressIndicator(
+                  color: colors.secondary,
+                ),
+              ));
+            }
+            if (state is MenuError) {
+              return SafeArea(
+                  child: Container(
+                      width: double.maxFinite,
+                      height: double.maxFinite,
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.warning_amber_rounded,
+                            color: colors.secondary,
+                            size: spacing.spacingXXXL,
+                          ),
+                          SizedBox(
+                            height: spacing.spacingMD,
+                          ),
+                          Text(MenuTextConstants.errorMessage,
+                              style: text.titleMedium,
+                              textAlign: TextAlign.center)
+                        ],
+                      )));
+            }
+
             return SafeArea(
               child: Container(
                 padding: EdgeInsets.symmetric(
