@@ -21,6 +21,17 @@ class _AssetsPageState extends State<AssetsPage> {
 
   late CompaniesEntity company;
 
+  bool filterDelayed = false;
+  void filterName() {
+    if (!filterDelayed) {
+      filterDelayed = true;
+      Future.delayed(const Duration(milliseconds: 1500), () {
+        controller.filterEvent();
+        filterDelayed = false;
+      });
+    }
+  }
+
   void listener() {
     AssetsState state = controller.state;
     if (state is AssetsError) {
@@ -93,7 +104,7 @@ class _AssetsPageState extends State<AssetsPage> {
                             focusNode: controller.focusNode,
                             label: AssetsTextConstants.textFieldLable,
                             prefixIcon: Icon(Icons.search),
-                            onChanged: (p0) => controller.filterEvent(),
+                            onChanged: (p0) => filterName(),
                             onTapOutside: (p0) {
                               controller.focusNode.unfocus();
                               controller.filterEvent();
