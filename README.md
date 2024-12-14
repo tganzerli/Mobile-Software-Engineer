@@ -61,6 +61,13 @@ In summary, a tree may like look this:
   └── Component X
 ```
 
+### Points to be improved
+
+By gaining a deeper understanding of the business rules, this application could achieve enhanced performance through predictive loading at the initial stage, allowing the process to run asynchronously while subsequent requests are served via caching. Additionally, implementing a method for dynamic element updates could be explored, though this would also require a more in-depth analysis of the business rules.
+
+### Video demonstrating
+[Video Demo](documentation/MobileSoftwareEngineer.mov)
+
 ## Technology
 
 The technology chosen for the development of this project was `Flutter`. Find out more at: [flutter.dev](https://flutter.dev/)
