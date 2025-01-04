@@ -30,12 +30,15 @@ class AssetsViewModels extends ViewModel<AssetsState> {
 
   Future<void> filterEvent(
       {ValueGetter<ComponentsStatus?>? componentsStatus}) async {
+    emit(state.loading());
     final status = componentsStatus == null ? null : componentsStatus();
     if (status == null) {
       emit(state.success(
-          elementsFiltered: filterName(), componentsStatus: componentsStatus));
+          elementsFiltered: await filterName(),
+          componentsStatus: componentsStatus));
     } else {
-      final filtered = filterName()
+      final elementsFiltered = await filterName();
+      final filtered = elementsFiltered
           .map((element) => element.filterStatus(status))
           .whereType<TreeElementEntity>()
           .toList();
@@ -45,14 +48,20 @@ class AssetsViewModels extends ViewModel<AssetsState> {
     }
   }
 
-  List<TreeElementEntity> filterName() {
-    if (textController.text.isEmpty) {
+  Future<List<TreeElementEntity>> filterName() async {
+    final searchText = textController.text;
+
+    if (searchText.isEmpty) {
       return state.elementsRoots;
     } else {
-      return state.elementsRoots
-          .map((element) => element.filterName(textController.text))
-          .whereType<TreeElementEntity>()
-          .toList();
+      final functions = state.elementsRoots.map((element) {
+        return () => element.filterName(searchText);
+      }).toList();
+
+      final parallel = Parallel<TreeElementEntity?>(functions);
+      final results = await parallel.run();
+
+      return results.whereType<TreeElementEntity>().toList();
     }
   }
 }
