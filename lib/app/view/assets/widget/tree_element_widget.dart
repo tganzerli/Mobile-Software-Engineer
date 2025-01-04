@@ -39,58 +39,68 @@ class _TreeElementWidgetState extends State<TreeElementWidget> {
     final colors = UiColors.of(context);
     final text = Theme.of(context).textTheme;
     return CollapseBox(
-      startExpeand: startExpeand,
-      title: (width) {
-        return SizedBox(
-          child: Row(
-            children: [
-              switch (widget.element.type) {
-                Type.location => UiImages.location(),
-                Type.component => UiImages.component(),
-                Type.asset => UiImages.asset(),
-              },
-              SizedBox(
-                width: spacing.spacingXS,
-              ),
-              Container(
-                constraints: BoxConstraints(maxWidth: width - spacing.size(40)),
-                child: Text(
-                  widget.element.name,
-                  style: text.bodyLarge,
+        startExpeand: startExpeand,
+        title: (width) {
+          return SizedBox(
+            child: Row(
+              children: [
+                switch (widget.element.type) {
+                  Type.location => UiImages.location(),
+                  Type.component => UiImages.component(),
+                  Type.asset => UiImages.asset(),
+                },
+                SizedBox(
+                  width: spacing.spacingXS,
                 ),
-              ),
-              SizedBox(
-                width: widget.element.type == Type.component
-                    ? spacing.spacingXS
-                    : 0,
-              ),
-              widget.element.type == Type.component
-                  ? switch (widget.element.componentsStatus!) {
-                      ComponentsStatus.operating => UiIcons.bolt(
-                          color: colors.greenDefault,
-                        ),
-                      ComponentsStatus.alert => Container(
-                          width: spacing.size(8),
-                          height: spacing.size(8),
-                          decoration: BoxDecoration(
-                              color: colors.redDefault, shape: BoxShape.circle),
-                        ),
-                    }
-                  : const SizedBox(),
-            ],
-          ),
-        );
-      },
-      body: widget.element.children.isEmpty
-          ? null
-          : Column(
-              children: widget.element.children
-                  .map((child) => TreeElementWidget(
-                        element: child,
-                        startExpeand: startExpeand,
-                      ))
-                  .toList(),
+                Container(
+                  constraints:
+                      BoxConstraints(maxWidth: width - spacing.size(40)),
+                  child: Text(
+                    widget.element.name,
+                    style: text.bodyLarge,
+                  ),
+                ),
+                SizedBox(
+                  width: widget.element.type == Type.component
+                      ? spacing.spacingXS
+                      : 0,
+                ),
+                widget.element.type == Type.component
+                    ? switch (widget.element.componentsStatus!) {
+                        ComponentsStatus.operating => UiIcons.bolt(
+                            color: colors.greenDefault,
+                          ),
+                        ComponentsStatus.alert => Container(
+                            width: spacing.size(8),
+                            height: spacing.size(8),
+                            decoration: BoxDecoration(
+                                color: colors.redDefault,
+                                shape: BoxShape.circle),
+                          ),
+                      }
+                    : const SizedBox(),
+              ],
             ),
-    );
+          );
+        },
+        body: widget.element.children.isEmpty
+            ? null
+            : CustomScrollView(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                slivers: widget.element.children
+                    .map((child) => SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              return TreeElementWidget(
+                                element: child,
+                                startExpeand: startExpeand,
+                              );
+                            },
+                            childCount: 1,
+                          ),
+                        ))
+                    .toList(),
+              ));
   }
 }

@@ -219,21 +219,23 @@ class _AssetsPageState extends State<AssetsPage> {
                       )));
             }
 
-            return SingleChildScrollView(
-              child: SafeArea(
-                child: Padding(
-                  padding: EdgeInsets.all(spacing.marginApp),
-                  child: Column(
-                    children:
-                        List.generate(state.elementsFiltered.length, (index) {
-                      return TreeElementWidget(
-                        element: state.elementsFiltered[index],
-                        startExpeand: state.componentsStatus != null ||
-                            controller.textController.text.isNotEmpty,
-                      );
-                    }),
+            return SafeArea(
+              child: Padding(
+                padding: EdgeInsets.all(spacing.marginApp),
+                child: CustomScrollView(slivers: [
+                  SliverList(
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        return TreeElementWidget(
+                          element: state.elementsFiltered[index],
+                          startExpeand: state.componentsStatus != null ||
+                              controller.textController.text.isNotEmpty,
+                        );
+                      },
+                      childCount: state.elementsFiltered.length,
+                    ),
                   ),
-                ),
+                ]),
               ),
             );
           }),
